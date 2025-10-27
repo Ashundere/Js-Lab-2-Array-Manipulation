@@ -19,9 +19,9 @@ const removeLastItem =()=>{
 const displayList =() =>{
     console.log(shoppingList)
     shoppingCart.innerHTML = ""; 
-    shoppingList.forEach(function(itemText){
+    shoppingList.forEach(function(itemOptions){
         const listItem = document.createElement("li");
-        listItem.innerText = itemText;
+        listItem.innerText = itemOptions;
         shoppingCart.appendChild(listItem);   
     })
 }
