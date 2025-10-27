@@ -1,7 +1,7 @@
 
 
 
-shoppingList =[]
+let shoppingList =[]
 
 const addItem = item =>{
     if (shoppingList.includes(item)){
@@ -18,6 +18,12 @@ const removeLastItem =()=>{
 
 const displayList =() =>{
     console.log(shoppingList)
+    shoppingCart.innerHTML = ""; 
+    shoppingList.forEach(function(itemText){
+        const listItem = document.createElement("li");
+        listItem.innerText = itemText;
+        shoppingCart.appendChild(listItem);   
+    })
 }
 
 const filterItems = term =>{
@@ -30,12 +36,28 @@ const filterItems = term =>{
         }
 })
         console.log(searchList)
+        return searchList
 }
 
-addItem("milk")
-addItem("Cheese")
-addItem("grapes")
-addItem("cheerios")
+let typeItem = document.getElementById("typeItem")
+let addItemButton = document.getElementById("addItemButton")
+let removeItemButton = document.getElementById("removeItemButton")
+let shoppingCart= document.getElementById("shoppingcart")
 
-displayList()
-filterItems("Chee")
+addItemButton.addEventListener("click",function(){
+ let item = typeItem.value;
+
+ if (item === "") {
+    alert("Please enter an Item.");
+    return;
+ }
+
+ addItem(item);
+ displayList();
+ typeItem.value ="";
+});
+
+removeItemButton.addEventListener("click",function(){
+ removeLastItem();
+ displayList();
+});
